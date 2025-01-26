@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/java/cdk-1.4.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java/cdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java/jmathio.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java/weka.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java/jmathplot.jar!/" />
+      <root url="jar://$PROJECT_DIR$/java/matlabcontrol-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,561 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import javax.vecmath.Point3d;
+import org.openscience.cdk.ChemFile;
+import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
+import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IChemFile;
+import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.io.ISimpleChemObjectReader;
+import org.openscience.cdk.io.ReaderFactory;
+import org.openscience.cdk.qsar.DescriptorEngine;
+import org.openscience.cdk.qsar.IAtomicDescriptor;
+import org.openscience.cdk.qsar.IDescriptor;
+import org.openscience.cdk.qsar.IMolecularDescriptor;
+import org.openscience.cdk.qsar.descriptors.atomic.IPAtomicLearningDescriptor;
+import org.openscience.cdk.qsar.result.DoubleArrayResult;
+import org.openscience.cdk.qsar.result.DoubleArrayResultType;
+import org.openscience.cdk.qsar.result.DoubleResult;
+import org.openscience.cdk.qsar.result.IDescriptorResult;
+import org.openscience.cdk.qsar.result.IntegerArrayResult;
+import org.openscience.cdk.qsar.result.IntegerArrayResultType;
+import org.openscience.cdk.qsar.result.IntegerResult;
+import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.HOSECodeGenerator;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
+
+public class GetCDKDescriptors {
+   private static DescriptorEngine ENGINE = new DescriptorEngine(1);
+
+   public static void main(String[] var0) throws IOException {
+      String var1 = var0[0];
+      String[] var2 = new String[]{var1};
+      String var3 = ".." + File.separator + ".." + File.separator + "temp" + File.separator;
+      String[] var4 = var2;
+      int var5 = var2.length;
+
+      for(int var6 = 0; var6 < var5; ++var6) {
+         String var7 = var4[var6];
+         String var8 = var3 + var7 + ".sdf";
+         String var9 = var3 + var7 + "_Descriptors.csv";
+         String var10 = var3 + var7 + "_Neighbors.csv";
+         getDescriptorCSV(var8, var9, "");
+         getNearestAtoms(var8);
+         writeNearestAtomsToCSV(var8, var10);
+      }
+
+   }
+
+   public GetCDKDescriptors(String var1, String var2, String var3) throws IOException {
+      getDescriptorCSV(var1, var2, var3);
+   }
+
+   public static void getDescriptorCSV(String var0, String var1, String var2) throws IOException {
+      List var3 = readMolecules(var0);
+      System.err.println("read " + var3.size() + " compounds");
+      List var4 = ENGINE.getDescriptorInstances();
+      System.err.println("found " + var4.size() + " descriptors");
+      List var5 = Arrays.asList(var2.split(","));
+      ArrayList var6 = new ArrayList();
+      ArrayList var7 = new ArrayList();
+      Iterator var8 = var4.iterator();
+
+      while(true) {
+         IDescriptor var9;
+         String var10;
+         do {
+            do {
+               if (!var8.hasNext()) {
+                  int var19 = var7.size();
+                  int var20 = ((IMolecule)var3.get(0)).getAtomCount();
+                  FileWriter var21 = new FileWriter(var1);
+                  BufferedWriter var22 = new BufferedWriter(var21);
+                  var22.write("SMILES,");
+
+                  int var23;
+                  for(var23 = 0; var23 < var19; ++var23) {
+                     if (var23 != 0) {
+                        var22.write(",");
+                     }
+
+                     var22.write((String)var6.get(var23));
+                  }
+
+                  var22.write("\n");
+
+                  for(var23 = 0; var23 < var20; ++var23) {
+                     IAtom var24 = ((IMolecule)var3.get(0)).getAtom(var23);
+                     String var26 = var24.getSymbol();
+                     var22.write(var26 + ",");
+
+                     for(int var27 = 0; var27 < var19; ++var27) {
+                        if (var27 != 0) {
+                           var22.write(",");
+                        }
+
+                        Double[] var10001 = (Double[])var7.get(var27);
+                        var22.write("" + var10001[var23]);
+                     }
+
+                     var22.write("\n");
+                  }
+
+                  var22.flush();
+                  return;
+               }
+
+               var9 = (IDescriptor)var8.next();
+            } while(var9 instanceof IPAtomicLearningDescriptor);
+
+            var10 = var9.getClass().getName();
+            String[] var11 = var10.split("\\.");
+            var10 = var11[var11.length - 1];
+         } while(var2.length() > 0 && !var5.contains(var10));
+
+         String[] var12 = var9.getDescriptorNames();
+         String[] var13 = new String[var12.length];
+
+         for(int var14 = 0; var14 < var12.length; ++var14) {
+            var13[var14] = var10 + "-" + var12[var14];
+         }
+
+         var6.addAll(Arrays.asList(var13));
+         Iterator var25 = var3.iterator();
+
+         while(var25.hasNext()) {
+            IAtomContainer var15 = (IAtomContainer)var25.next();
+            int var16 = var15.getAtomCount();
+            ArrayList var17 = new ArrayList();
+
+            for(int var18 = 0; var18 < var16; ++var18) {
+               var17.add(var15.getAtom(var18));
+            }
+
+            var7.addAll(computeListsAtomic(var15, var17, (IAtomicDescriptor)var9));
+         }
+      }
+   }
+
+   public static ArrayList<Double[]> getAtomicDescriptor(String var0, String var1) throws IOException {
+      List var2 = readMoleculesString(var0);
+      System.err.println("read " + var2.size() + " compounds");
+      List var3 = ENGINE.getDescriptorInstances();
+      System.err.println("found " + var3.size() + " descriptors");
+      List var4 = Arrays.asList(var1.split(","));
+      ArrayList var5 = new ArrayList();
+      ArrayList var6 = new ArrayList();
+      Iterator var7 = var3.iterator();
+
+      while(true) {
+         IDescriptor var8;
+         String var9;
+         do {
+            do {
+               if (!var7.hasNext()) {
+                  return var6;
+               }
+
+               var8 = (IDescriptor)var7.next();
+            } while(var8 instanceof IPAtomicLearningDescriptor);
+
+            var9 = var8.getClass().getName();
+            String[] var10 = var9.split("\\.");
+            var9 = var10[var10.length - 1];
+         } while(var1.length() > 0 && !var4.contains(var9));
+
+         String[] var11 = var8.getDescriptorNames();
+
+         for(int var12 = 0; var12 < var11.length; ++var12) {
+            var11[var12] = var9 + "-" + var11[var12];
+         }
+
+         var5.addAll(Arrays.asList(var11));
+         Iterator var17 = var2.iterator();
+
+         while(var17.hasNext()) {
+            IAtomContainer var13 = (IAtomContainer)var17.next();
+            int var14 = var13.getAtomCount();
+            ArrayList var15 = new ArrayList();
+
+            for(int var16 = 0; var16 < var14; ++var16) {
+               var15.add(var13.getAtom(var16));
+            }
+
+            var6.addAll(computeListsAtomic(var13, var15, (IAtomicDescriptor)var8));
+            getHoseCodesForMolecule(var13);
+         }
+      }
+   }
+
+   public static ArrayList<String> getFluorineAtoms(String var0) {
+      List var1 = readMoleculesString(var0);
+      ArrayList var2 = new ArrayList();
+      Iterator var3 = var1.iterator();
+
+      while(var3.hasNext()) {
+         IAtomContainer var4 = (IAtomContainer)var3.next();
+         int var5 = var4.getAtomCount();
+
+         for(int var6 = 0; var6 < var5; ++var6) {
+            IAtom var7 = var4.getAtom(var6);
+            if (var7.getSymbol().equals("F")) {
+               List var8 = var4.getConnectedAtomsList(var7);
+               if (!((IAtom)var8.get(0)).getSymbol().equals("O") && !((IAtom)var8.get(0)).getSymbol().equals("N")) {
+                  var2.add(String.valueOf(var6));
+               }
+            }
+         }
+      }
+
+      return var2;
+   }
+
+   public static ArrayList<ArrayList<String>> getNearestAtoms(String var0) {
+      List var1 = readMolecules(var0);
+      ArrayList var2 = new ArrayList();
+      Iterator var3 = var1.iterator();
+
+      while(var3.hasNext()) {
+         IAtomContainer var4 = (IAtomContainer)var3.next();
+         int var5 = var4.getAtomCount();
+         ArrayList var6 = new ArrayList();
+
+         int var7;
+         for(var7 = 0; var7 < var5; ++var7) {
+            var6.add(var4.getAtom(var7));
+         }
+
+         for(var7 = 0; var7 < var6.size(); ++var7) {
+            Double[] var8 = new Double[var6.size()];
+
+            for(int var9 = 0; var9 < var6.size(); ++var9) {
+               if (var9 == var7) {
+                  var8[var9] = Double.MAX_VALUE;
+               } else {
+                  Point3d var10 = ((IAtom)var6.get(var7)).getPoint3d();
+                  Point3d var11 = ((IAtom)var6.get(var9)).getPoint3d();
+                  Double var12 = var11.distance(var10);
+                  var8[var9] = var12;
+               }
+            }
+
+            ArrayList var14 = new ArrayList();
+            Double[] var15 = (Double[])var8.clone();
+            Arrays.sort(var15);
+            List var16 = Arrays.asList(var8);
+
+            for(int var17 = 0; var17 < var8.length; ++var17) {
+               String var13 = String.valueOf(var16.indexOf(var15[var17]));
+               var14.add(var13);
+            }
+
+            var2.add(var14);
+         }
+      }
+
+      return var2;
+   }
+
+   public static void writeNearestAtomsToCSV(String var0, String var1) throws IOException {
+      ArrayList var2 = getNearestAtoms(var0);
+      BufferedWriter var3 = new BufferedWriter(new FileWriter(var1));
+
+      try {
+         Iterator var4 = var2.iterator();
+
+         while(var4.hasNext()) {
+            ArrayList var5 = (ArrayList)var4.next();
+            String var6 = String.join(",", var5);
+            var3.write(var6);
+            var3.newLine();
+         }
+      } catch (Throwable var8) {
+         try {
+            var3.close();
+         } catch (Throwable var7) {
+            var8.addSuppressed(var7);
+         }
+
+         throw var8;
+      }
+
+      var3.close();
+   }
+
+   public static ArrayList<String> getHoseCodesForMolecule(IAtomContainer var0) {
+      HOSECodeGenerator var1 = new HOSECodeGenerator();
+      ArrayList var2 = new ArrayList();
+      int var3 = var0.getAtomCount();
+      new ArrayList();
+
+      for(int var5 = 0; var5 < var3; ++var5) {
+         try {
+            String var6 = var1.getHOSECode(var0, var0.getAtom(var5), 0);
+            var2.add(var6);
+            System.out.println("HOSE = " + var6 + "\n");
+         } catch (CDKException var7) {
+            var7.printStackTrace();
+         }
+      }
+
+      return var2;
+   }
+
+   public static String getSmiles(IMolecule var0) {
+      Map var1 = var0.getProperties();
+      Iterator var2 = var1.keySet().iterator();
+
+      Object var3;
+      do {
+         if (!var2.hasNext()) {
+            SmilesGenerator var4 = new SmilesGenerator();
+            return var4.createSMILES(var0);
+         }
+
+         var3 = var2.next();
+      } while(!var3.toString().equals("STRUCTURE_SMILES") && !var3.toString().equals("SMILES"));
+
+      return var1.get(var3).toString();
+   }
+
+   public static List<Double[]> computeLists(List<IMolecule> var0, IMolecularDescriptor var1) {
+      System.out.println("computing descriptor " + getName(var1));
+      List var2 = computeDescriptors(var0, var1);
+      return var2;
+   }
+
+   public static List<Double[]> computeListsAtomic(IAtomContainer var0, List<IAtom> var1, IAtomicDescriptor var2) {
+      System.out.println("computing descriptor " + getName(var2));
+      List var3 = computeDescriptorsAtomic(var0, var1, var2);
+      return var3;
+   }
+
+   public static List<IMolecule> readMolecules(String var0) {
+      Vector var1 = new Vector();
+      File var2 = new File(var0);
+      if (!var2.exists()) {
+         throw new IllegalArgumentException("file not found: " + var0);
+      } else {
+         List var3;
+         try {
+            ISimpleChemObjectReader var4 = (new ReaderFactory()).createReader(new InputStreamReader(new FileInputStream(var2)));
+            if (var4 == null) {
+               throw new IllegalArgumentException("Could not determine input file type");
+            }
+
+            IChemFile var5 = (IChemFile)var4.read(new ChemFile());
+            var3 = ChemFileManipulator.getAllAtomContainers(var5);
+            var4.close();
+         } catch (Exception var10) {
+            var10.printStackTrace();
+            return null;
+         }
+
+         Iterator var11 = var3.iterator();
+
+         while(var11.hasNext()) {
+            IAtomContainer var12 = (IAtomContainer)var11.next();
+            IMolecule var6 = (IMolecule)var12;
+            var6 = (IMolecule)AtomContainerManipulator.removeHydrogens(var6);
+
+            try {
+               AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(var6);
+            } catch (Exception var9) {
+               var9.printStackTrace();
+            }
+
+            try {
+               CDKHueckelAromaticityDetector.detectAromaticity(var6);
+            } catch (Exception var8) {
+               var8.printStackTrace();
+            }
+
+            if (var6.getAtomCount() == 0) {
+               System.err.println("molecule has no atoms");
+            } else {
+               var1.add(var6);
+            }
+         }
+
+         return var1;
+      }
+   }
+
+   public static List<IMolecule> readMoleculesString(String var0) {
+      Vector var1 = new Vector();
+      if (var0.equals("")) {
+         throw new IllegalArgumentException("No sdf found" + var0);
+      } else {
+         List var2;
+         try {
+            ByteArrayInputStream var3 = new ByteArrayInputStream(var0.getBytes("UTF-8"));
+            ISimpleChemObjectReader var4 = (new ReaderFactory()).createReader(new InputStreamReader(var3));
+            if (var4 == null) {
+               throw new IllegalArgumentException("Could not determine input file type");
+            }
+
+            IChemFile var5 = (IChemFile)var4.read(new ChemFile());
+            var2 = ChemFileManipulator.getAllAtomContainers(var5);
+            var4.close();
+         } catch (Exception var9) {
+            var9.printStackTrace();
+            return null;
+         }
+
+         Iterator var10 = var2.iterator();
+
+         while(var10.hasNext()) {
+            IAtomContainer var11 = (IAtomContainer)var10.next();
+            IMolecule var12 = (IMolecule)var11;
+
+            try {
+               AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(var12);
+            } catch (Exception var8) {
+               var8.printStackTrace();
+            }
+
+            try {
+               CDKHueckelAromaticityDetector.detectAromaticity(var12);
+            } catch (Exception var7) {
+               var7.printStackTrace();
+            }
+
+            if (var12.getAtomCount() == 0) {
+               System.err.println("molecule has no atoms");
+            } else {
+               var1.add(var12);
+            }
+         }
+
+         return var1;
+      }
+   }
+
+   public static List<Double[]> computeDescriptors(List<IMolecule> var0, IMolecularDescriptor var1) {
+      ArrayList var2 = new ArrayList();
+
+      int var3;
+      for(var3 = 0; var3 < getSize(var1); ++var3) {
+         var2.add(new Double[var0.size()]);
+      }
+
+      for(var3 = 0; var3 < var0.size(); ++var3) {
+         int var7;
+         if (((IMolecule)var0.get(var3)).getAtomCount() == 0) {
+            for(var7 = 0; var7 < getSize(var1); ++var7) {
+               ((Double[])var2.get(var7))[var3] = null;
+            }
+         } else {
+            int var5;
+            try {
+               IDescriptorResult var4 = var1.calculate((IAtomContainer)var0.get(var3)).getValue();
+               if (var4 instanceof IntegerResult) {
+                  ((Double[])var2.get(0))[var3] = (double)((IntegerResult)var4).intValue();
+               } else if (var4 instanceof DoubleResult) {
+                  ((Double[])var2.get(0))[var3] = ((DoubleResult)var4).doubleValue();
+               } else if (var4 instanceof DoubleArrayResult) {
+                  for(var5 = 0; var5 < getSize(var1); ++var5) {
+                     ((Double[])var2.get(var5))[var3] = ((DoubleArrayResult)var4).get(var5);
+                  }
+               } else {
+                  if (!(var4 instanceof IntegerArrayResult)) {
+                     String var10002 = String.valueOf(var1);
+                     throw new IllegalStateException("Unknown idescriptor result value for '" + var10002 + "' : " + String.valueOf(var4.getClass()));
+                  }
+
+                  for(var5 = 0; var5 < getSize(var1); ++var5) {
+                     ((Double[])var2.get(var5))[var3] = (double)((IntegerArrayResult)var4).get(var5);
+                  }
+               }
+            } catch (Throwable var6) {
+               System.err.println("Could not compute cdk feature " + String.valueOf(var1));
+               var6.printStackTrace();
+
+               for(var5 = 0; var5 < getSize(var1); ++var5) {
+                  ((Double[])var2.get(var5))[var3] = null;
+               }
+            }
+         }
+
+         for(var7 = 0; var7 < getSize(var1); ++var7) {
+            if (((Double[])var2.get(var7))[var3] != null && (((Double[])var2.get(var7))[var3].isNaN() || ((Double[])var2.get(var7))[var3].isInfinite())) {
+               ((Double[])var2.get(var7))[var3] = null;
+            }
+         }
+      }
+
+      return var2;
+   }
+
+   public static List<Double[]> computeDescriptorsAtomic(IAtomContainer var0, List<IAtom> var1, IAtomicDescriptor var2) {
+      ArrayList var3 = new ArrayList();
+      var3.add(new Double[var1.size()]);
+
+      for(int var4 = 0; var4 < var1.size(); ++var4) {
+         if (var1.get(var4) == null) {
+            ((Double[])var3.get(0))[var4] = null;
+         } else {
+            try {
+               IDescriptorResult var5 = var2.calculate((IAtom)var1.get(var4), var0).getValue();
+               if (var5 instanceof IntegerResult) {
+                  ((Double[])var3.get(0))[var4] = (double)((IntegerResult)var5).intValue();
+               } else if (var5 instanceof DoubleResult) {
+                  ((Double[])var3.get(0))[var4] = ((DoubleResult)var5).doubleValue();
+               } else if (var5 instanceof DoubleArrayResult) {
+                  ((Double[])var3.get(0))[var4] = ((DoubleArrayResult)var5).get(0);
+               } else {
+                  if (!(var5 instanceof IntegerArrayResult)) {
+                     String var10002 = String.valueOf(var2);
+                     throw new IllegalStateException("Unknown idescriptor result value for '" + var10002 + "' : " + String.valueOf(var5.getClass()));
+                  }
+
+                  ((Double[])var3.get(0))[var4] = (double)((IntegerArrayResult)var5).get(0);
+               }
+            } catch (Throwable var6) {
+               System.err.println("Could not compute cdk feature " + String.valueOf(var2));
+               var6.printStackTrace();
+               ((Double[])var3.get(0))[var4] = 0.0;
+            }
+         }
+
+         if (((Double[])var3.get(0))[var4] != null && (((Double[])var3.get(0))[var4].isNaN() || ((Double[])var3.get(0))[var4].isInfinite())) {
+            ((Double[])var3.get(0))[var4] = 0.0;
+         }
+      }
+
+      return var3;
+   }
+
+   private static int getSize(IMolecularDescriptor var0) {
+      IDescriptorResult var1 = var0.getDescriptorResultType();
+      if (var1 instanceof DoubleArrayResultType) {
+         return ((DoubleArrayResultType)var1).length();
+      } else {
+         return var1 instanceof IntegerArrayResultType ? ((IntegerArrayResultType)var1).length() : 1;
+      }
+   }
+
+   private static String getName(IDescriptor var0) {
+      try {
+         String var1 = ENGINE.getDictionaryTitle(var0.getSpecification()).trim();
+         return var1 != null ? var1 : "";
+      } catch (Throwable var2) {
+         return "";
+      }
+   }
+}

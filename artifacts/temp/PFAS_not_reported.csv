@@ -1,0 +1,163 @@
+,Group,Compound name,CAS,Alternative name,SMILES
+0,PFCA,Sodium trifluoroacetate,2923-18-4,C2 COOH,O=C([O-])C(F)(F)F.[Na+]
+13,PFdiCOOH,Difluoromalonic acid,1514-85-8,C3(COOH)2,O=C(O)C(F)(F)C(=O)O
+14,PFdiCOOH,"2,2-difluorosuccinic acid",665-31-6,C4(COOH)2 telo,O=C(O)CC(F)(F)C(=O)O
+15,PFdiCOOH,Tetrafluorosuccinic acid,377-38-8,C4(COOH)2,O=C(O)C(F)(F)C(F)(F)C(=O)O
+16,PFdiCOOH,Hexafluoroglutaric acid,376-73-8,C5(COOH)2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(=O)O
+18,PFdiCOOH,Dodecafluorosuberic acid,678-45-5,C8(COOH)2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(=O)O
+20,PFdiCOOH,Hexadecafluorosebacic acid,307-78-8,C10(COOH)2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(=O)O
+21,PFdiCOOH,"Perfluoro-1,10-decanedicarboxylic acid",865-85-0,C12(COOH)2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(=O)O
+23,H-terminal PFCA,3H-Tetrafluoropropionic acid,756-09-2,H+C3 COOH,O=C(O)C(F)(F)C(F)F
+24,H-terminal PFCA,5H-Octafluoropentanoic acid,376-72-7,H+C5 COOH,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)F
+28,H-terminal PFCA,11H-Eicosafluoroundecanoic acid,1765-48-6,H+C11 COOH,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)F
+29,Cl-terminal PFCA,Sodium chlorodifluoroacetate,1895-39-2,CF2Cl-COOH,O=C([O-])C(F)(F)Cl.[Na+]
+30,Cl-terminal PFCA,3-Chlorotetrafluoropropionic acid,661-82-5,CF2Cl-CF2-COOH,O=C(O)C(F)(F)C(F)(F)Cl
+31,Cl-terminal PFCA,5-Chlorooctafluoropentanoic acid,66443-79-6,CF2Cl-CF2-CF2-CF2-COOH,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl
+32,Cl-terminal PFCA,9-Chlorohexadecafluorononanoic Acid,865-79-2,CF2Cl-(CF2)7-COOH,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl
+34,FT(n:1)COOH,"3,3,4,4,4-pentafluorobutanoic Acid",380-60-9,2:1 COOH,O=C(O)CC(F)(F)C(F)(F)F
+38,FT(n:2)COOH,"2H,2H,3H,3H-Perfluoropentanoic acid",3637-31-8,2:2 FTCA,O=C(O)CCC(F)(F)C(F)(F)F
+39,FT(n:2)COOH,"2H,2H,3H,3H-Perfluorohexanoic acid",356-02-5,3:2 FTCA,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)F
+40,FT(n:2)COOH,"2H,2H,3H,3H-Perfluoroheptanoic acid",80705-13-1,4:2 FTCA,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+42,FT(n:2)COOH,"2H,2H,3H,3H-Perfluorononanoic acid",27854-30-4,6:2 FTCA,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+43,FT(n:2)COOH,"2H,2H,3H,3H-Perfluorodecanoic acid",812-70-4,7:2 FTCA,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+44,FT(n:2)COOH,"2H,2H,3H,3H-Perfluoroundecanoic acid",34598-33-9,8:2 FTCA,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+45,Mechanism,Sodium Fluoroacetate,62-74-8,CFH2-COONa,O=C([O-])CF.[Na+]
+46,Mechanism,2-Fluoropropionic acid,6087-13-4,CH3-CHF-COOH,CC(F)C(=O)O
+47,Mechanism,"2,2-Difluoropropionic acid",373-96-6,CH3-CF2-COOH,CC(F)(F)C(=O)O
+49,Mechanism,"2,3,3,3-Tetrafluoropropionic acid",359-49-9,CF3-CFH-COO-,O=C(O)C(F)C(F)(F)F
+50,Mechanism,2-Fluoroisobutyric acid,63812-15-7,(CH3)2-CF-COOH,CC(C)(F)C(=O)O
+51,Mechanism,"2,2-Difluorobutanoic acid",2366-62-3,CH3-CH2-CF2-COOH,CCC(F)(F)C(=O)O
+52,Mechanism,"5,5,5-Trifluoropentanoic acid",407-62-5,1:3 COOH,O=C(O)CCCC(F)(F)F
+53,Mechanism,2-(fluorosulfonyl)difluoroacetic acid,1717-59-5,FSO2-CF2-COOH,O=C(O)C(F)(F)S(=O)(=O)F
+54,Mechanism,Trifluoropyruvic acid,1081801-99-1,CF3-CO-COOH,O=C(O)C(=O)C(F)(F)F
+55,Mechanism,"2-Chloro-2,3,3,3-tetrafluoropropanoic acid",6189-02-2,CF3-CFCl-COOH,O=C(O)C(F)(Cl)C(F)(F)F
+57,Branched,"Perfluoro-3,7-dimethyloctanoic acid",172155-07-6,"C8 (3,7 dimethyl) COOH",O=C(O)C(F)(F)C(F)(C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(C(F)(F)F)C(F)(F)F
+58,Branched,"Perfluoro-3,5,5-trimethylhexanoic acid",238403-51-5,"C6 (3,5,5 trimethyl) COOH",O=C(O)C(F)(F)C(F)(C(F)(F)F)C(F)(F)C(C(F)(F)F)(C(F)(F)F)C(F)(F)F
+59,Branched,"2-(Trifluoromethyl)-3,3,3-trifluoropropionic acid",564-10-3,C3 Branched COOH,O=C(O)C(C(F)(F)F)C(F)(F)F
+60,Branched,"4,4,4-Trifluoro-3-(trifluoromethyl)butyric acid",17327-33-2,C4 Branched COOH,O=C(O)CC(C(F)(F)F)C(F)(F)F
+61,Branched,"3-Amino-4,4,4-trifluorobutyric acid",584-20-3,C4(3-amino) COOH,NC(CC(=O)O)C(F)(F)F
+62,Ring,Perfluorocyclohexanecarboxylic acid,374-88-9,,O=C(O)C1(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C1(F)F
+63,FT(n:1)OH,"2,2,2-Trifluoroethanol",75-89-8,C2(1:1)OH,OCC(F)(F)F
+66,FT(n:1)OH,"1H,1H-Nonafluoropentan-1-ol",355-28-2,C5(4:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+67,FT(n:1)OH,"1H,1H-Perfluorohexan-1-ol",423-46-1,C6(5:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+68,FT(n:1)OH,"1H,1H-Perfluoroheptan-1-ol",375-82-6,C7(6:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+70,FT(n:1)OH,"1H,1H-Perfluorononan-1-ol",423-56-3,C9(8:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+72,FT(n:1)OH,"1H,1H-Perfluorotetradecan-1-ol",15622-57-8,C14(13:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+75,FT(n:2)OH,"3,3,4,4,5,5,5-heptafluoropentan-1-ol",755-40-8,C5(3:2)OH,OCCC(F)(F)C(F)(F)C(F)(F)F
+80,FT(n:3)OH,"4,4,5,5,5-Pentafluoropentan-1-ol",148043-73-6,C5(2:3)OH,OCCCC(F)(F)C(F)(F)F
+81,FT(n:3)OH,"4,4,5,5,6,6,6-Heptafluorohexan-1-ol",679-02-7,C6(3:3)OH,OCCCC(F)(F)C(F)(F)C(F)(F)F
+82,FT(n:3)OH,"1H,1H,2H,2H,3H,3H-Nonafluoroheptan-1-ol",83310-97-8,C7(4:3)OH,OCCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+83,FT(n:3)OH,"1H,1H,2H,2H,3H,3H-Perfluorononan-1-ol",80806-68-4,C9(6:3)OH,OCCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+84,FT(n:3)OH,"1H,1H,2H,2H,3H,3H-Perfluorodecan-1-ol",25600-66-2,C10(7:3)OH,OCCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+85,H-terminal FT(n:1)OH,"2,2-Difluoroethanol",359-13-7,H+C2(1:1)OH,OCC(F)F
+86,H-terminal FT(n:1)OH,"2,2,3,3-Tetrafluoropropan-1-ol",76-37-9,H+C3(2:1)OH,OCC(F)(F)C(F)F
+88,H-terminal FT(n:1)OH,"1H,1H,6H-Decafluorohexan-1-ol",60838-60-8,H+C6(5:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)F
+89,H-terminal FT(n:1)OH,"1H,1H,7H-Perfluoroheptan-1-ol",335-99-9,H+C7(6:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)F
+90,H-terminal FT(n:1)OH,"1H,1H,8H-Perfluorooctan-1-ol",10331-08-5,H+C8(7:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)F
+91,H-terminal FT(n:1)OH,"1H,1H,9H-Hexadecafluorononan-1-ol",376-18-1,H+C9(8:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)F
+92,H-terminal FT(n:1)OH,"1H,1H,11H-Perfluoroundecan-1-ol",307-70-0,H+C11(10:1)OH,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)F
+93,FTdiOH,"2,2,3,3-Tetrafluoro-1,4-butanediol",425-61-6,C4(OH)2,OCC(F)(F)C(F)(F)CO
+94,FTdiOH,"2,2,3,3,4,4-Hexafluoro-1,5-pentanediol",376-90-9,C5(OH)2,OCC(F)(F)C(F)(F)C(F)(F)CO
+95,FTdiOH,"2,2,3,3,4,4,5,5-Octafluoro-1,6-hexanediol",355-74-8,C6(OH)2,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)CO
+96,FTdiOH,"1H,1H,8H,8H-Dodecafluoro-1,8-octanediol",90177-96-1,C8(OH)2,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO
+97,FTdiOH,"1H,1H,9H,9H-Perfluoro-1,9-nonanediol",203303-01-9,C9(OH)2,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO
+98,FTdiOH,"1H,1H,10H,10H-Perfluoro-1,10-decanediol",754-96-1,C10(OH)2,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO
+99,FTdiOH,"1H,1H,12H,12H-Perfluoro-1,12-dodecandiol",183162-43-8,C12(OH)2,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO
+100,FTdiOH,"1H,1H,2H,3H,3H-Perfluorononane-1,2-diol",107650-06-6,"C9(6:3)(1,2-diol)OH",OCC(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+101,Branched,"Hexafluoro-2,3-bis(trifluoromethyl)butane-2,3-diol",918-21-8,,OC(C(F)(F)F)(C(F)(F)F)C(O)(C(F)(F)F)C(F)(F)F
+102,Branched,"Perfluoro-3,7-dimethyloctan-1-ol",232587-50-7,"C8(3,7)OH",OCC(F)(F)C(F)(C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(C(F)(F)F)C(F)(F)F
+103,Branched,"1H,1H,2H,2H-Perfluoro(9-methyldecan)-1-ol",31200-98-3,C10(8:2)(9-methyl)OH,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(C(F)(F)F)C(F)(F)F
+105,Branched,(Perfluorocyclohexyl)methanol,28788-68-3,PF-cyclohex-OH,OCC1(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C1(F)F
+106,Ether-OH,"1H,1H-Perfluoro(2-methyl-3-oxahexan-1-ol)",26537-88-2,GenX OH,OCC(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F
+107,Ether-OH,"1H,1H-Nonafluoro-3,6-dioxaheptan-1-ol",330562-43-1,,OCC(F)(F)OC(F)(F)C(F)(F)OC(F)(F)F
+108,Ether-OH,"1H,1H,11H,11H-Perfluoro-3,6,9-trioxaundecane-1,11-diol",330562-44-2,,OCC(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)CO
+111,Mechanism,"2,2,3,4,4,4-Hexafluorobutan-1-ol",382-31-0,3H-C4(3:1)OH,OCC(F)(F)C(F)C(F)(F)F
+112,Miscellaneous,Trifluoroacetaldehyde methyl hemiacetal,431-46-9,,COC(O)C(F)(F)F
+113,PFSA,Sodium trifluoromethanesulfinate,2926-29-6,TFM-SO2,O=S([O-])C(F)(F)F.[Na+]
+114,PFSA,Sodium trifluoromethanesulfonate,2926-30-9,TFMS,O=S(=O)([O-])C(F)(F)F.[Na+]
+116,PFSA,Potassium nonafluorobutanesulfonate,29420-49-3,PFBS,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+]
+117,PFSA,Potassium perfluorohexanesulfonate,3871-99-6,PFHxS,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+]
+119,FT-SO3H,"2,2,2-Trifluoroethanesulfonic acid",1827-97-0,1:1 FTS,O=S(=O)(O)CC(F)(F)F
+124,H-Terminal,"1,1,2,2-tetrafluoroethane sulfonic acid",464-14-2,,O=S(=O)(O)C(F)(F)C(F)F
+125,SO2-NH2 (sulfonamide),Trifluoromethanesulfonamide,421-85-2,TFMSA,NS(=O)(=O)C(F)(F)F
+126,SO2-NH2 (sulfonamide),pentafluoroethanesulfonamide,78491-70-0,,NS(=O)(=O)C(F)(F)C(F)(F)F
+130,SO2-NH2 (sulfonamide),"N-Propyl-N-(2,3-dihydroxypropyl)perfluoro-n-octylsulfonamide",2262-49-9,PFOSA-AFFF,CCCN(CC(O)CO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+131,SO2-NH2 (sulfonamide),"3,3,3-trifluoropropane-1-sulfonamide",1033906-44-3,1:2 FTSAm,NS(=O)(=O)CCC(F)(F)F
+133,Ether SO3H,5H-Octafluoro-3-oxapentanesulfonyl fluoride,104729-49-9,H-terminal monomer,O=S(=O)(F)C(F)(F)C(F)(F)OC(F)(F)C(F)F
+134,Ether SO3H,"8-Fluorosulfonylperfluoro(2,5-dimethyl-3,6-dioxaoctanoyl) fluoride",4089-58-1,Nafion precursor,O=C(F)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)S(=O)(=O)F)C(F)(F)F)C(F)(F)F
+135,Ether SO3H,"Perfluoro(4-methyl-3,6-dioxaoctane)sulfonyl fluoride",27744-59-8,,O=S(=O)(F)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)(F)C(F)(F)F
+136,Ether SO3H,"7H-Perfluoro-4-methyl-3,6-dioxaoctanesulfonic acid",749836-20-2,Nafion BP-2,O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)C(F)(F)F
+137,Ether SO3H,Potassium 3-oxaperfluorononane sulfonate,68136-88-9,F53,O=S(=O)([O-])C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+]
+138,Ether SO3H,Potassium 9-chlorohexadecafluoro-3-oxanonane-1-sulfonate,73606-19-6,F53-B,O=S(=O)([O-])C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl.[K+]
+141,Branched,"Perfluoro-2,5-dimethyl-3,6-dioxanonanoic acid",13252-14-7,"C9(2,5-Br)(3,6) Oxo-COOH",O=C(O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F
+142,Branched,"Perfluoro(2,5,8-trimethyl-3,6,9-trioxadodecanoic) acid",65294-16-8,"C12(2,5,8-Br)(3,6,9) Oxo-COOH",O=C(O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F)C(F)(F)F
+144,Short-Chain Ether Compounds,2-(trifluoromethoxy)acetic acid,69105-00-6,TFMOA,O=C(O)COC(F)(F)F
+145,Short-Chain Ether Compounds,"sodium;2,2-difluoro-2-(trifluoromethoxy)acetate",21837-98-9,C4(3) oxo-COOH,O=C([O-])C(F)(F)OC(F)(F)F.[Na+]
+152,Ether diCOOH,"Perfluoro-3,6-dioxaoctane-1,8-dioic acid",55621-21-1,"C8(3,6) Oxo-di-COOH",O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(=O)O
+153,Ether diCOOH,"Perfluoro-3,6,9-trioxaundecane-1,11-dioic acid",55621-18-6,"C11(3,6,9) Oxo-di-COOH",O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(=O)O
+157,(C=O)-NH2,Trifluoroacetamide,354-38-1,C2 amide,NC(=O)C(F)(F)F
+158,(C=O)-NH3,Pentafluoropropionamide,354-76-7,C3 amide,NC(=O)C(F)(F)C(F)(F)F
+159,(C=O)-NH4,Heptafluorobutyramide,662-50-0,C4 amide,NC(=O)C(F)(F)C(F)(F)C(F)(F)F
+160,(C=O)-NH5,"2,2,3,3,4,4,5,5,5-nonafluoropentanamide",13485-61-5,C5 amide,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+161,(C=O)-NH6,Perfluorohexanamide,335-54-6,C6 amide,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+162,(C=O)-NH7,Perfluorooctanamide,423-54-1,C8 amide,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+163,(C=O)-NH8,Perfluorodecanamide,307-40-4,C10 amide,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+164,diAmide,"2,2-Difluoromalonamide",425-99-0,C3 diAmide,NC(=O)C(F)(F)C(N)=O
+165,diAmide,Tetrafluorosuccinamide,377-37-7,C4 diAmide,NC(=O)C(F)(F)C(F)(F)C(N)=O
+166,diAmide,Tetrafluorosuccinimide,377-33-3,,O=C1NC(=O)C(F)(F)C1(F)F
+167,diAmide,Hexafluoroglutaramide,507-68-6,C5 diAmide,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(N)=O
+168,diAmide,Octafluoroadipamide,355-66-8,C6 diAmide,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(N)=O
+169,H-terminal,"2,2-Difluoroacetamide",359-38-6,H+C2 Amide,NC(=O)C(F)F
+170,CF3-(C=O)-NR2,N-Methyltrifluoroacetamide,815-06-5,C2 Amide-methyl,CNC(=O)C(F)(F)F
+171,CF3-(C=O)-NR3,"N,N-Dimethyltrifluoroacetamide",1547-87-1,C2 Amide-dimethyl,CN(C)C(=O)C(F)(F)F
+172,CF3-(C=O)-NR4,"N,N-Diethyl-2,2,2-trifluoroacetamide",360-92-9,C2 Amide-diethyl,CCN(CC)C(=O)C(F)(F)F
+173,CF3-(C=O)-NR5,N-(Hydroxymethyl)trifluoroacetamide,50667-69-1,N-MeOH TFAm,O=C(NCO)C(F)(F)F
+175,Ether Amide,Perfluoro(2-methyl-3-oxahexan)amide,13140-35-7,,NC(=O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F
+176,Ether Amide,"Perfluoro(2,5-dimethyl-3,6-dioxanonan)amide",60308-67-0,"C9(2,5-Br)(3,6) Oxo-amide",NC(=O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F
+177,Ether Amide,6-(Heptafluoroisopropoxy)decafluorohexanoamide,29952-92-9,,NC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)F
+178,Mechanism (Amide),"2,2-Difluoropropionamide",49781-48-8,,CC(F)(F)C(N)=O
+179,Mechanism (Amide),N-Methylbis(trifluoroacetamide),685-27-8,MBTFA,CN(C(=O)C(F)(F)F)C(=O)C(F)(F)F
+180,Mechanism (Amide),"2,3,3,3-Tetrafluoropropionamide",1647-57-0,,NC(=O)C(F)C(F)(F)F
+181,Mechanism (Amide),"N,N-Diethyl-2,3,3,3-tetrafluoropropionamide",392-63-2,,CCN(CC)C(=O)C(F)C(F)(F)F
+182,Mechanism (Amide),2-Methoxytetrafluoropropionamide,10186-65-9,,COC(F)(C(N)=O)C(F)(F)F
+183,Mechanism (Amide),Trifluoropyruvamide hydrate,1210756-85-6,,NC(=O)C(=O)C(F)(F)F.O
+184,Mechanism (Amide),"3,3,3-Trifluoropropanamide",460-75-3,,NC(=O)CC(F)(F)F
+186,Rings,N-(trifluoroacetyl)imidazole,1546-79-8,,O=C(n1ccnc1)C(F)(F)F
+187,Rings,N-Heptafluorobutyrylimidazole,32477-35-3,,O=C(n1ccnc1)C(F)(F)C(F)(F)C(F)(F)F
+188,Rings,1-(trifluoromethyl)acetylbenzotriazole,183266-61-7,,O=C(n1nnc2ccccc21)C(F)(F)F
+189,Rings,2-[(trifluoroacetyl)amino]benzoic acid,CDS015036,,O=C(O)c1ccccc1NC(=O)C(F)(F)F
+190,Rings,Trifluoroacetylpiperazine,CDS003848,,O=C(N1CCNCC1)C(F)(F)F
+191,Amidine,Trifluoroacetamidine,CDS003733,,N=C(N)C(F)(F)F
+192,Amidine,Pentafluoropropylamidine,CDS002917,,N=C(N)C(F)(F)C(F)(F)F
+193,NH2,"2,2,3,3,3-Pentafluoropropylamine",422-03-7,2:1 FTAmine,NCC(F)(F)C(F)(F)F
+194,NH3,"2,2,3,3,4,4,4-Heptafluorobutylamine",374-99-2,3:1 FTAmine,NCC(F)(F)C(F)(F)C(F)(F)F
+195,NH4,"1H,1H-Perfluoropentylamine",355-27-1,4:1 FTAmine,NCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+196,NH5,"1H,1H-Perfluorooctylamine",307-29-9,7:1 FTAmine,NCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+197,Triamine,Perfluorotriethylamine,359-70-6,Perfluorotriethylamine,FC(F)(F)C(F)(F)N(C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)F
+198,Triamine,Perfluorotripropylamine,338-83-0,Perfluorotripropylamine,FC(F)(F)C(F)(F)C(F)(F)N(C(F)(F)C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)F
+201,FT-Silanes,"1H,1H,2H,2H-Perfluorohexyltriethoxysilane",102390-98-7,4:2 FTSi,CCO[Si](CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F)(OCC)OCC
+202,FT-Silanes,"1H,1H,2H,2H-Perfluorooctyltriethoxysilane",51851-37-7,6:2 FTSi,CCO[Si](CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)(OCC)OCC
+203,FT-Silanes,"1H,1H,2H,2H-Perfluorodecyltriethoxysilane",101947-16-4,8:2 FTSi,CCO[Si](CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)(OCC)OCC
+204,Alkene,1-(Trifluoromethyl)cyclopropane-1-carboxylic acid,277756-46-4,(C3H4)(CF3)-COOH,O=C(O)C1(C(F)(F)F)CC1
+205,Alkene,2-(Trifluoromethyl)acrylic acid,381-98-6,CF3-C(=CH2)-COOH,C=C(C(=O)O)C(F)(F)F
+207,Alkene,"4,4-Difluorobutenoic acid",944328-71-6,CF2H-CH2-CH2-COOH,O=C(O)C=CC(F)F
+208,Alkene,"4,4,4-Trifluoro-3-(trifluoromethyl)crotonic acid",1763-28-6,(CF3)2-C=CH-COOH,O=C(O)C=C(C(F)(F)F)C(F)(F)F
+209,Alkene,"4,4,4-Trifluoro-3-methyl-2-butenoic acid",69056-67-3,CF3-C(CH3)=CH-COOH,C/C(=C\C(=O)O)C(F)(F)F
+210,Alkene,"4,5,5,5-Tetrafluoro-4-(trifluoromethyl)-2-pentenoic acid",243139-64-2,(CF3)2CF-CH=CH-COOH,O=C(O)/C=C/C(F)(C(F)(F)F)C(F)(F)F
+211,Alkene,"4,5,5-Trifluoropent-4-enoic acid",110003-22-0,CF2=CFH-CH2-CH2-COOH,O=C(O)CCC(F)=C(F)F
+212,Alkene,(E)-Perfluoro(4-methylpent-2-enoic acid),103229-89-6,(CF3)2CF-CF=CF-COOH,O=C(O)/C(F)=C(\F)C(F)(C(F)(F)F)C(F)(F)F
+214,Arenes,3-(Pentafluorophenyl)propionic acid,2002-92-8,,O=C(O)CCc1c(F)c(F)c(F)c(F)c1F
+215,Arenes,"2,3,4,5,6-Pentafluorobenzamide",652-31-3,PF-benzamide,NC(=O)c1c(F)c(F)c(F)c(F)c1F
+216,Arenes,Pentafluorobenzenesulfonamide,778-36-9,PF-benz-SO3H,NS(=O)(=O)c1c(F)c(F)c(F)c(F)c1F
+217,Alcohol,"4,4,4-trifluoro-2-buten-1-ol",674-53-3,CF3-CH=CH-CH2-OH,OCC=CC(F)(F)F
+219,Ring Structures,Pentafluorobenzenesulfonyl chloride,832-53-1,,O=S(=O)(Cl)c1c(F)c(F)c(F)c(F)c1F
+220,Ring Structures,"2,2,3,3,4,4,5,5,6,6-decafluoro-1-(trifluoromethyl)piperidine",359-71-7,,FC(F)(F)N1C(F)(F)C(F)(F)C(F)(F)C(F)(F)C1(F)F
+222,Ring Structures,Perfluoro-2-butyltetrahydrofuran,335-36-4,,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C1(F)OC(F)(F)C(F)(F)C1(F)F
+223,Ring Structures,"Perfluoro-1,3,5-trimethylcyclohexane",374-76-5,,FC(F)(F)C1(F)C(F)(F)C(F)(C(F)(F)F)C(F)(F)C(F)(C(F)(F)F)C1(F)F
+225,Ring Structures,4-(Trifluoromethyl)phenol,402-45-9,,Oc1ccc(C(F)(F)F)cc1
+226,Ring Structures,4-(Pentafluorothio)benzoic acid,832-32-6,,O=C(O)c1ccc(S(F)(F)(F)(F)F)cc1
+227,Ring Structures,4-(Pentafluorothio)phenol,774-94-7,,Oc1ccc(S(F)(F)(F)(F)F)cc1
+229,Acyl chlroides,Perfluoro(2-methyl-3-oxahexanoyl) chloride,72848-57-8,,O=C(Cl)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F
+230,Ester,Methyl heptafluoroisobutyrate,680-05-7,,COC(=O)C(F)(C(F)(F)F)C(F)(F)F
+232,Ketone,"1,1,1-Trifluoropentane-2,4-dione",367-57-7,,CC(=O)CC(=O)C(F)(F)F
+233,Nitrile,"2,2,3,3,4,4,5,5,6,6,7,7,8,8,8-pentadecafluorooctanenitrile",647-12-1,,N#CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F

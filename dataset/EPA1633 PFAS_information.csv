@@ -1,0 +1,41 @@
+Analyte Name,Acronym,CAS Number,MW,Molecular formula,SMILES
+Hexafluoropropylene oxide dimer acid,HFPO-DA,13252-13-6,330.05,C6HF11O3,O=C(O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F
+"4,8-Dioxa-3H-perfluorononanoic acid",ADONA,919005-14-4,378.07,C7H2F12O4,O=C(O)C(F)(F)C(F)OC(F)(F)C(F)(F)C(F)(F)OC(F)(F)F
+9-Chlorohexadecafluoro-3-oxanonane-1-sulfonic  acid,9Cl-PF3ONS,756426-58-1,532.58,C8HClF16O4S,O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl
+11-Chloroeicosafluoro-3-oxaundecane-1-sulfonic  acid,11Cl-PF3OUdS,763051-92-9,632.6,C10ClF20HO4S,O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl
+Perfluoro-3-methoxypropanoic acid,PFMPA,377-73-1,230.04,C4HF7O3,O=C(O)C(F)(F)C(F)(F)OC(F)(F)F
+Perfluoro-4-methoxybutanoic acid,PFMBA,863090-89-5,280.04,C5HF9O3,O=C(O)C(F)(F)C(F)(F)C(F)(F)OC(F)(F)F
+"Nonafluoro-3,6-dioxaheptanoic acid",NFDHA,151772-58-6,296.04,C5HF9O4,O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)F
+Perfluoro(2-ethoxyethane)sulfonic  acid,PFEESA,113507-82-7,316.1,C4HF9O4S,O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(F)C(F)(F)F
+Perfluorobutanoic acid,PFBA,375-22-4,214.04,C4HF7O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)F
+Perfluoropentanoic acid,PFPeA,2706-90-3,264.05,C5HF9O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorohexanoic acid,PFHxA,307-24-4,314.05,C6HF11O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluoroheptanoic acid,PFHpA,375-85-9,364.06,C7HF13O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorooctanoic acid,PFOA,335-67-1,414.07,C8HF15O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorononanoic acid,PFNA,375-95-1,464.08,C9HF17O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorodecanoic acid,PFDA,335-76-2,514.08,C10HF19O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluoroundecanoic acid,PFUnA,2058-94-8,564.09,C11HF21O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorododecanoic acid,PFDoA,307-55-1,614.1,C12HF23O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorotridecanoic acid,PFTrDA,72629-94-8,664.1,C13HF25O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorotetradecanoic acid,PFTeDA,376-06-7,714.11,C14HF27O2,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorobutanesulfonic acid,PFBS,375-73-5,300.1,C4HF9O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluoropentansulfonic acid,PFPeS,2706-91-4,350.11,C5HF11O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorohexanesulfonic acid (linear and branched isomers),PFHxS,355-46-4,400.11,C6HF13O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluoroheptanesulfonic acid,PFHpS,375-92-8,450.12,C7HF15O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorooctanesulfonic acid (linear and branched isomers),PFOS,1763-23-1,500.13,C8HF17O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorononanesulfonic acid,PFNS,68259-12-1,550.14,C9HF19O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorodecanesulfonic acid,PFDS,335-77-3,600.15,C10HF21O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorododecanesulfonic acid,PFDoS,79780-39-5,700.16,C12HF25O3S,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+"1H,1H, 2H, 2H-Perfluorohexane sulfonic acid",4:2FTS,757124-72-4,328.15,C6H5F9O3S,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+"1H,1H, 2H, 2H-Perfluorooctane sulfonic acid",6:2FTS,27619-97-2,428.16,C8H5F13O3S,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+"1H,1H, 2H, 2H-Perfluorodecane sulfonic acid",8:2FTS,39108-34-4,528.18,C10H5F17O3S,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+N-methyl perfluorooctanesulfonamidoacetic acid (linear and branched isomers),NMeFOSAA,2355-31-9,571.2,C11H6F17NO4S,CN(CC(=O)O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+N-ethyl perfluorooctanesulfonamidoacetic acid (linear and branched isomers),NEtFOSAA,2991-50-6,585.24,C12H8F17NO4S,CCN(CC(=O)O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+Perfluorooctanesulfonamide,PFOSA,754-91-6,499.15,C8H2F17NO2S,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+N-methyl perfluorooctanesulfonamide,NMeFOSA,31506-32-8,513.17,C9H4F17NO2S,CNS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+N-ethyl perfluorooctanesulfonamide,NEtFOSA,4151-50-2,527.2,"	C10H6F17NO2S",CCN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+N-methyl perfluorooctanesulfonamidoethanol,NMeFOSE,24448-09-7,557.224,C11H8F17NO3S,CN(C(O)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+N-ethyl perfluorooctanesulfonamidoethanol,NEtFOSE,1691-99-2,571.25,C12H10F17NO3S,CCN(C(O)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+3-Perfluoropropyl propanoic acid,3:3FTCA,356-02-5,242.09,C6H5F7O2,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)F
+"2H,2H,3H,3H-Perfluorooctanoic acid",5:3FTCA,914637-49-3,342.11,C8H5F11O2,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F
+3-Perfluoroheptyl propanoic acid,7:3FTCA,812-70-4,442.12,C10H5F15O2,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F

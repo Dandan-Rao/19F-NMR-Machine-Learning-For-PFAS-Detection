@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="JAVAget_3D_feature_set">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/cdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/jmi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/weka.jar!/" />
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/cdk-1.4.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/jmathio.jar!/" />
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/matlabcontrol-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/external/JAVAget_3D_feature_set/out/production/JAVAget_3D_feature_set/jmathplot.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
