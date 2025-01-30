@@ -6,6 +6,7 @@ random_state = 1
 
 from rdkit import Chem
 
+from src.atomic_features_3D import Transform_SMILE_to_3D_conformation
 import common
 from hosegen import HoseGenerator
 from hosegen.geometry import *
@@ -32,10 +33,21 @@ def getHoseCodeContent(data, max_radius=6):
     data.columns = [common.convert_column_name(name) for name in data.columns]
     fluorinated_compounds_content = pd.DataFrame()
 
-    for i, row in data.iterrows():
+    for _, row in data.iterrows():
         smiles = row["SMILES"]
         fluorinated_compounds = row["Code"]
+        # mol = Chem.MolFromSmiles(smiles)
+
         mol = Chem.MolFromSmiles(smiles)
+        if mol is None:
+            raise ValueError("Invalid SMILES string")
+        # Transform SMILES to canonical SMILES
+        smiles = Chem.MolToSmiles(mol)
+        mol = Chem.MolFromSmiles(smiles)
+        mol = Transform_SMILE_to_3D_conformation(smiles)
+
+
+        # mol = Chem.MolFromMolFile(os.paht.join('temp', 'temp.sdf'))
 
         output_file_path = os.path.join(
             "..", "artifacts", "temp", f"{fluorinated_compounds}.mol"
@@ -61,6 +73,7 @@ def getHoseCodeContent(data, max_radius=6):
                             wedgebond=wedgemap,
                         )
                     )
+                
                 dic[atom_index] = hose_codes
 
         df = pd.DataFrame.from_dict(dic).T
@@ -71,6 +84,7 @@ def getHoseCodeContent(data, max_radius=6):
         fluorinated_compounds_content = pd.concat(
             [fluorinated_compounds_content, df], axis=0
         )
+       
     return fluorinated_compounds_content
 
 

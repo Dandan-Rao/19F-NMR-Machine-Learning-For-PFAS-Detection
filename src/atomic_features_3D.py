@@ -21,6 +21,9 @@ def get_sdf_file(smiles):
     if mol is None:
         raise ValueError("Invalid SMILES string")
 
+    if not any(atom.GetSymbol() == "F" for atom in mol.GetAtoms()):
+        raise ValueError("No F in the molecule")
+    
     # Transform SMILES to canonical SMILES
     smiles = Chem.MolToSmiles(mol)
 
@@ -35,7 +38,7 @@ def get_sdf_file(smiles):
     w.close()
 
     # Create pictures for the molecule
-    for i, atom in enumerate(mol.GetAtoms()):
+    for _, atom in enumerate(mol.GetAtoms()):
         atom.SetProp("molAtomMapNumber", str(atom.GetIdx()))
 
         # Save the molecule image with the Code as part of the file name

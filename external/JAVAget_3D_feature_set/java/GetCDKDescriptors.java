@@ -127,7 +127,7 @@ public class GetCDKDescriptors {
      ArrayList<String> colNames = new ArrayList<String>();
      ArrayList<Double[]> values = new ArrayList<Double[]>();
 
-     //处理30个分子描述符
+     //Handle 30 atomic descriptors
      for (IDescriptor desc : descriptors) {   // Traverse all CDK descriptors
          if (desc instanceof IPAtomicLearningDescriptor)    // If desc is instance of IPAtomicLearningDescriptor, skip current iteration
              continue;
