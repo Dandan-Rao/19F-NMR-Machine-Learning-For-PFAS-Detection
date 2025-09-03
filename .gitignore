@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.gitignore
 *.py[cod]
 *$py.class
 
@@ -7,7 +8,6 @@ __pycache__/
 .idea
 .vscode
 .DS_Store
-
 
 .webassets-cache
 
@@ -41,3 +41,17 @@ ENV/
 # mkdocs documentation
 /site
 
+# Other private files
+All PFAS in Lab_w_smiles.xlsx
+notebooks/test_fluorinated_compounds.csv
+output.profile_default
+Example.mol
+check.csv
+notebooks/5_application.ipynb
+notebooks/6_rule_verification_and_new_rules.ipynb
+notebooks/Example.mol
+notebooks/output.pdf 
+notebooks/check.csv
+notebooks/test_fluorinated_compounds.csv
+# All temporary files
+temp*

@@ -3,11 +3,10 @@ import numpy as np
 import os
 from sklearn.preprocessing import OneHotEncoder
 import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score
 import math
 
-
-from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.impute import KNNImputer
 from xgboost import XGBRegressor
 
@@ -23,6 +22,68 @@ random_state = 1
 pd.set_option("display.max_rows", 10)
 pd.set_option("display.max_columns", 100)
 
+def split_datasets(dataset, test_ratio = 0.15, RANDOM_STATE=1, set_name = 'test', verbose = False):
+    """
+    Split the dataset into train and test datasets.
+    Only PFAS compounds are included in the test and validation datasets, the left compounds are used for training.
+    
+    Args:
+        dataset: pandas DataFrame containing the dataset with fluorinated compounds.
+        test_ratio (float): Ratio of the test dataset relative to the whole dataset.
+        RANDOM_STATE (int): Random state for reproducibility.
+        set_name: Name of the dataset generated, default is 'test', can also be set as 'validation'.
+    Returns:
+        tuple: Train and test datasets as pandas DataFrames.
+    """
+    # Load the dataset
+    
+
+    # Transform the column names of the DataFrame to integers where possible and keep them as strings otherwise
+    dataset.columns = [
+        convert_column_name(name) for name in dataset.columns
+    ]
+
+    # Split the dataset into PFAS and non-PFAS compounds
+    duplicated_pfas = dataset[
+        dataset["SMILES"].duplicated()
+    ]
+    non_duplicated = dataset.drop(duplicated_pfas.index) 
+    pfas_df = non_duplicated[
+        non_duplicated["IsPFAS(haveCF2)"] == True
+    ]
+    non_pfas_df = non_duplicated[
+        non_duplicated["IsPFAS(haveCF2)"] == False
+    ]
+
+    # Decide the size of the train, validation, and test datasets
+    test_ratio_pfas = test_ratio * len(dataset) / len(pfas_df)
+
+    # Get test dataset
+    train_fluorinated_compounds, test_fluorinated_compounds = train_test_split(
+        pfas_df, test_size=test_ratio_pfas, random_state=RANDOM_STATE, shuffle=True
+    )
+
+    # Get train dataset by left PFAS compounds and non-PFAS compounds
+    train_fluorinated_compounds = pd.concat([non_pfas_df, duplicated_pfas, train_fluorinated_compounds])
+
+    # Shuffle datasets
+    test_fluorinated_compounds = test_fluorinated_compounds.sample(frac=1, random_state=RANDOM_STATE).reset_index(drop=True)
+    train_fluorinated_compounds = train_fluorinated_compounds.sample(frac=1, random_state=RANDOM_STATE).reset_index(drop=True)
+    if verbose:
+        print(
+            f"Number of fluorinated compounds in the train and {set_name} datasets are {train_fluorinated_compounds.shape[0]} and {test_fluorinated_compounds.shape[0]} respectively."
+        )
+        ratio_PFAS_in_train = train_fluorinated_compounds['IsPFAS(haveCF2)'].sum() / train_fluorinated_compounds.shape[0]
+        ratio_PFAS_in_test = test_fluorinated_compounds['IsPFAS(haveCF2)'].sum() / test_fluorinated_compounds.shape[0]
+        print(f"Ratio of PFAS in the train and {set_name} datasets are {ratio_PFAS_in_train:.2f} and {ratio_PFAS_in_test:.2f} respectively.")
+    return train_fluorinated_compounds, test_fluorinated_compounds
+
+
+def safe_to_numeric(col):
+    try:
+        return pd.to_numeric(col)
+    except Exception:
+        return col
 
 def convert_column_name(name):
     """
@@ -42,12 +103,51 @@ def canonical_smiles(smiles):
     smiles = [Chem.MolToSmiles(mol) for mol in mols]
     return smiles
 
+def ionic_to_neutral_smiles(ionic_smiles):
+    """
+    Convert ionic SMILES to non-ionic (neutral) format.
+    
+    Args:
+        ionic_smiles (str): SMILES string in ionic format
+        
+    Returns:
+        str: SMILES string in non-ionic format
+    """
+    # Parse the SMILES string
+    mol = Chem.MolFromSmiles(ionic_smiles)
+    
+    if mol is None:
+        return "Error: Invalid SMILES string"
+    
+    # Get the largest fragment (usually the main molecule without counterions)
+    frags = Chem.GetMolFrags(mol, asMols=True)
+    
+    # Find the largest fragment by number of atoms
+    largest_frag = max(frags, key=lambda m: m.GetNumAtoms())
+    
+    # For the largest fragment, find any charged atoms
+    for atom in largest_frag.GetAtoms():
+        # If there's a negative oxygen (like [O-]), make it neutral
+        if atom.GetSymbol() == 'O' and atom.GetFormalCharge() == -1:
+            atom.SetFormalCharge(0)
+            # Increase implicit H count by 1 to neutralize
+            atom.SetNumExplicitHs(atom.GetNumExplicitHs() + 1)
+    
+    # Remove any existing explicit hydrogens and re-add them correctly
+    largest_frag = Chem.RemoveHs(largest_frag)
+    largest_frag = Chem.AddHs(largest_frag)
+    
+    # Convert back to SMILES (canonicalized)
+    non_ionic_smiles = Chem.MolToSmiles(largest_frag, isomericSmiles=True, canonical=True)
+    
+    return non_ionic_smiles
 
 def plot_prediction_performance(results_table, figure_title=None):
     """
     Plot the distribution of the prediction error of a model.
     """
-    num_below_1, num_below_2, num_below_3, num_below_5, num_below_10, num_below_20 = (
+    num_below_1, num_below_2, num_below_3, num_below_5, num_below_10, num_below_20, num_below_30 = (
+        0,
         0,
         0,
         0,
@@ -58,6 +158,8 @@ def plot_prediction_performance(results_table, figure_title=None):
     total_count = len(results_table["diff"])
 
     for i in results_table["diff"]:
+        if i < 30:
+            num_below_30 += 1
         if i < 20:
             num_below_20 += 1
         if i < 10:
@@ -71,7 +173,7 @@ def plot_prediction_performance(results_table, figure_title=None):
         if i < 1:
             num_below_1 += 1
 
-    x = [0, 1, 2, 3, 5, 10, 20]
+    x = [0, 1, 2, 3, 5, 10, 20, 30]
     y = [
         0,
         num_below_1,
@@ -80,6 +182,7 @@ def plot_prediction_performance(results_table, figure_title=None):
         num_below_5,
         num_below_10,
         num_below_20,
+        num_below_30
     ]
     y = [val / total_count for val in y]
 
@@ -90,7 +193,7 @@ def plot_prediction_performance(results_table, figure_title=None):
     ax.plot(x, y, marker="o", color="#069AF3")
     ax.set_title(figure_title)
     #     plt.grid(True)
-    ax.set_xlim([-1, 22])
+    ax.set_xlim([-1, 32])
 
     # Set border (edge) line width
     ax.spines["top"].set_linewidth(1)  # Top border
@@ -133,6 +236,7 @@ def show_results_scatter(results_table, figure_title=None):
         y=results_table["prediction"],
         alpha=0.6,
         color="#069AF3",
+        s=10
     )
 
     ax.plot([30, -300], [30, -300], c="red")
@@ -162,6 +266,7 @@ def show_results_scatter(results_table, figure_title=None):
     mae = mean_absolute_error(results_table["actual"], results_table["prediction"])
     print(f"MAE = {mae}")
     plt.show()
+    return mae, rmse, r2
 
 
 def one_hot_encoding_of_smiles_neighborN(
@@ -364,7 +469,7 @@ def get_results_table(best_model, X, y):
 
 
 def testRidgeCVPerformance(
-    dataset, neighbor_num, RidgeCVmodel_path, scaler_path, imputer_path, columns_path
+    dataset, num_neighbors, RidgeCVmodel_path, scaler_path, imputer_path, columns_path, show_plot = True
 ):
     """
     Test the performance of Ridge model. Ouput the results table, plot the error distribution of the model, and plot the scatter plot of actual vs predicted values.
@@ -383,9 +488,10 @@ def testRidgeCVPerformance(
 
     # convert values to numeric values when possible
     dataset = atomic_features_3D.Combine_descriptors(
-        dataset, neighbor_num=neighbor_num, with_additional_info=True
+        dataset, num_neighbors=num_neighbors, with_additional_info=True
     )
-    #     dataset = dataset.rename_axis('atomCode_fluorinated_compoundsCode', inplace = True)
+    
+    # dataset = dataset.rename_axis('atomCode_fluorinated_compoundsCode', inplace = True)
     dataset.apply(convert_to_numeric)
 
     # drop rows with NaN values in the 'NMR_Peaks' column
@@ -410,9 +516,15 @@ def testRidgeCVPerformance(
     X_scaled.index = X.index
 
     results_table = get_results_table(best_model=best_model, X=X_scaled, y=y)
-    plot_prediction_performance(results_table, figure_title=None)
-    show_results_scatter(results_table, figure_title=None)
-    return results_table
+    if show_plot:
+        plot_prediction_performance(results_table, figure_title=None)
+        mae, rmse, r2 = show_results_scatter(results_table, figure_title=None)
+    else:
+        mae = mean_absolute_error(results_table["actual"], results_table["prediction"])
+        mse = mean_squared_error(results_table["actual"], results_table["prediction"])
+        rmse = math.sqrt(mse)
+        r2 = r2_score(results_table["actual"], results_table["prediction"])
+    return results_table, (mae, rmse, r2)
 
 
 def get_XGBoost_model_results(
@@ -670,8 +782,6 @@ def display_results(results):
     display(styled_details)
 
 
-# -
-
 
 def predictor(
     smiles,
@@ -733,23 +843,69 @@ def predictor(
             ensembled_XGBoost_and_HOSE.append(row["HOSE_model_prediction"])
         else:
             ensembled_XGBoost_and_HOSE.append(row["XGBoost_model_prediction"])
-
     combined_prediction["ensembeled_model"] = ensembled_XGBoost_and_HOSE
+
+    # Identify atoms in same environment, and average their predictions
+    temp_dataset = {'Code': ['temp'], 'SMILES': [smiles]}
+    for i in range(71):
+        temp_dataset[i] = None
+    temp_dataset = pd.DataFrame(temp_dataset, index=[0])
+    HOSE_codes = hose_code.getHoseCodeContent(dataset)
+    ensemble_temp = combined_prediction.merge(HOSE_codes.drop('NMR_Peaks', axis=1), left_index=True, right_index=True)
+    ensemble_temp_grouped = ensemble_temp.groupby([0, 1, 2, 3, 4, 5])['ensembeled_model'].transform('mean')
+    ensemble_temp['ensembeled_model'] = ensemble_temp_grouped
+    combined_prediction = ensemble_temp.drop([0, 1, 2, 3, 4, 5], axis=1)
+
+    # Calculate the error of the ensembled model
     combined_prediction["ensembeled_model_error"] = (
         combined_prediction["ensembeled_model"] - combined_prediction["actual"]
     )
     combined_prediction["ensembeled_model_error"] = combined_prediction[
         "ensembeled_model_error"
     ].abs()
-
+    
     ensemble = combined_prediction.drop(
         ["HOSE_model_prediction", "XGBoost_model_prediction"], axis=1
     )
 
+    # Split the index value into two parts based on the first underscore
     split_values = [safe_split(idx) for idx in ensemble.index]
-
     # Create new columns from the split values
     ensemble["atom_index"] = [val[0] for val in split_values]
     ensemble["fluorinated_compounds"] = [val[1] for val in split_values]
     # Usage
     display_results(ensemble)
+
+
+
+def get_readable_feature_name_2d(feature_id):
+    # Define the feature names in a dictionary for faster lookup
+    feature_names = {
+        1: 'mass',
+        2: 'hybridization',
+        3: 'isAromatic',
+        4: 'degree',
+        5: 'valence',
+        6: 'explicit_valence',
+        7: 'isInRing'
+    }
+    
+    # Determine the sphere number
+    if feature_id <= 6:
+        sphere = 1
+        number_of_features_in_previous_spheres = 0
+    elif feature_id <= 27:
+        sphere = 2
+        number_of_features_in_previous_spheres = 7
+    else:
+        sphere = 3
+        number_of_features_in_previous_spheres = 28
+
+    # Calculate item number and feature number
+    items_number = (feature_id - number_of_features_in_previous_spheres) // 7 + 1
+    feature_number = feature_id + 1 - number_of_features_in_previous_spheres - (items_number - 1) * 7
+    
+    # Get feature name using dictionary lookup
+    feature_name = feature_names.get(feature_number, 'Unknown Feature')  # Default to 'Unknown Feature' if not found
+    
+    return f"The feature_id '{feature_id}' corresponds to the '{feature_name}' of the atom in Sphere '{sphere}', Item '{items_number}'"

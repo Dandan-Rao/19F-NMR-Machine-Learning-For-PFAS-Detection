@@ -8,6 +8,7 @@ import pickle
 
 import common
 from hosegen.geometry import *
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 
 class getAtomicDescriptorsFrom2DNeighbors:
@@ -26,7 +27,7 @@ class getAtomicDescriptorsFrom2DNeighbors:
             A list of atoms in the current sphere
 
         next_sphere_level: int
-             The number of next sphere. For target F atom, the C atom next to it belongs to sphere 0.
+             The level of next sphere. For target F atom, the C atom next to it belongs to sphere level 0.
 
         Output
         ----------
@@ -88,7 +89,7 @@ class getAtomicDescriptorsFrom2DNeighbors:
         sphere0_atoms = self.findNeighborsNextSphere(None, [F_atom], 0)
         sphere1_atoms = self.findNeighborsNextSphere(
             [F_atom], sphere0_atoms[:1], 1
-        )  # We know sphere0 can only have one valid atom, C
+        )  # We know sphere0 can only have one valid atom, C/S/Si
         sphere2_atoms = self.findNeighborsNextSphere(
             sphere0_atoms[:1], sphere1_atoms, 2
         )
@@ -122,7 +123,7 @@ class getAtomicDescriptorsFrom2DNeighbors:
             sphere3,
             sphere4,
             sphere5,
-        )  # Only keep the only one valid atom, C
+        )  # Only keep the only one valid atom, C/S/Si
 
     def getNeighborsInDiffSpheres(self, smiles):
         """
@@ -140,24 +141,15 @@ class getAtomicDescriptorsFrom2DNeighbors:
         """
         # Create an RDKit molecule object from the SMILES string
         mol = Chem.MolFromSmiles(smiles)
+
+
         neighbors = {}
         for atom in mol.GetAtoms():
-            atom_symbol = (
-                atom.GetSymbol()
-            )  # Get the atomic symbol (e.g., 'C', 'O', 'F')
+            atom_symbol = (atom.GetSymbol())  # Get the atomic symbol (e.g., 'C', 'O', 'F')
             if atom_symbol == "F":
                 atom_index = atom.GetIdx()  # Get the index of the atom
-                sphere0, sphere1, sphere2, sphere3, sphere4, sphere5 = (
-                    self.getNeighborsOfFAtom(atom)
-                )
-                neighbors[atom_index] = [
-                    sphere0,
-                    sphere1,
-                    sphere2,
-                    sphere3,
-                    sphere4,
-                    sphere5,
-                ]
+                spheres = self.getNeighborsOfFAtom(atom)  # should return 6 sphere lists
+                neighbors[atom_index] = spheres
 
         df = pd.DataFrame.from_dict(neighbors).T
         df = df.map(lambda x: tuple(x) if isinstance(x, list) else x)
@@ -492,6 +484,7 @@ class getAtomicDescriptorsFrom2DNeighbors:
         fluorinated_compounds_content = pd.DataFrame()
         for i, row in dataset.iterrows():
             smiles = row["SMILES"]
+            smiles = common.canonical_smiles([smiles])[0]
             fluorinated_compounds = row["Code"]
             content = self.getDescriptorsFromSmiles(smiles, num_spheres, feature_list)
             index_list = content.index
@@ -508,7 +501,8 @@ class getAtomicDescriptorsFrom2DNeighbors:
 
     def testXGBoost2DModelPerformance(
         self,
-        best_model_file_path,
+        XGBoost_model_path,
+        columns_path,
         dataset,
         num_spheres,
         feature_list=[
@@ -520,27 +514,35 @@ class getAtomicDescriptorsFrom2DNeighbors:
             "explicit_valence",
             "isInRing",
         ],
+        show_plot = True
     ):
         best_model = XGBRegressor()
-        best_model.load_model(best_model_file_path)
+        best_model.load_model(XGBoost_model_path)
+
+        with open(columns_path, "rb") as file:
+            train_columns = pickle.load(file)
 
         get_2d_descriptors = getAtomicDescriptorsFrom2DNeighbors()
-        vali_content = get_2d_descriptors.getDescriptorsFromDataset(
+        content = get_2d_descriptors.getDescriptorsFromDataset(
             dataset, num_spheres, feature_list
         )
+        content = content.dropna(subset=["NMR_Peaks"])
+        content = content.apply(pd.to_numeric, errors="ignore")
+        content.columns = content.columns.astype(str)
+        content = content[train_columns]
 
-        vali_content = vali_content.dropna(subset=["NMR_Peaks"])
-        y = vali_content["NMR_Peaks"]
-        X = vali_content.drop(["NMR_Peaks"], axis=1)
+        y = content["NMR_Peaks"]
+        X = content.drop(["NMR_Peaks"], axis=1)
 
         results_table = common.get_results_table(best_model=best_model, X=X, y=y)
-        common.plot_prediction_performance(results_table, figure_title=None)
-        common.show_results_scatter(results_table, figure_title=None)
+        if show_plot:
+            common.plot_prediction_performance(results_table, figure_title=None)
+            common.show_results_scatter(results_table, figure_title=None)
         return results_table
 
 
 def testRidgePerformance2DFeatures(
-    dataset, num_spheres, RidgeCVmodel_path, scaler_path, imputer_path, columns_path
+    dataset, num_spheres, RidgeCVmodel_path, scaler_path, imputer_path, columns_path, show_plot = True
 ):
     with open(RidgeCVmodel_path, "rb") as file:
         best_model = pickle.load(file)
@@ -578,15 +580,20 @@ def testRidgePerformance2DFeatures(
     X = content_imputed.drop(["NMR_Peaks"], axis=1)
 
     X_scaled = scaler.transform(X)
-
     X_scaled = pd.DataFrame(X_scaled)
     X_scaled.columns = X.columns
     X_scaled.index = X.index
 
     results_table = common.get_results_table(best_model=best_model, X=X_scaled, y=y)
-    common.plot_prediction_performance(results_table, figure_title=None)
-    common.show_results_scatter(results_table, figure_title=None)
-    return results_table
+    if show_plot:
+        common.plot_prediction_performance(results_table, figure_title=None)
+        mae, rmse, r2 = common.show_results_scatter(results_table, figure_title=None)
+    else:
+        mae = mean_absolute_error(results_table["actual"], results_table["prediction"])
+        mse = mean_squared_error(results_table["actual"], results_table["prediction"])
+        rmse = math.sqrt(mse)
+        r2 = r2_score(results_table["actual"], results_table["prediction"])
+    return results_table, (mae, rmse, r2)
 
 
 all_neighbor_atoms_list = [

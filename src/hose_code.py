@@ -164,7 +164,7 @@ def HOSE_Model(sphere_dics, test_data, mean_value_in_train_data):
             2: find in pool with max_radius = 2
             1: find in pool with max_radius = 1
     """
-    #     test_data = test_data.dropna(subset = ['NMR_Peaks'])
+    #  test_data = test_data.dropna(subset = ['NMR_Peaks'])
     test_data["NMR_Peaks"] = test_data["NMR_Peaks"].apply(
         pd.to_numeric, errors="coerce"
     )
@@ -240,20 +240,20 @@ def get_HOSE_prediction_results_table(
     HOSE_Code_database.columns = [
         common.convert_column_name(name) for name in HOSE_Code_database.columns
     ]
+    HOSE_Code_database["NMR_Peaks"] = HOSE_Code_database["NMR_Peaks"].apply(
+        pd.to_numeric, errors="coerce"
+        )
 
     HOSE_codes_test = getHoseCodeContent(test_fluorinated_compounds)
 
     # Get HOSE Code and corresponding 19F NMR values using train dataset
     sphere_dics = getTrainDictionary_HOSE(HOSE_Code_database)
 
-    HOSE_Code_database["NMR_Peaks"] = HOSE_Code_database["NMR_Peaks"].apply(
-        pd.to_numeric, errors="coerce"
-    )
-
     # Get prediction results and corresponding similarity levels for the validation dataset
     prediction, similarity_levels = HOSE_Model(
         sphere_dics, HOSE_codes_test, HOSE_Code_database["NMR_Peaks"].mean()
     )
+
     # Validation dataset
     results = getResults_HOSE(prediction, similarity_levels, HOSE_codes_test)
 
