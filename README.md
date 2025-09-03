@@ -2,28 +2,12 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-AWS%20Lambda-blue)](https://wqdx9jslij.execute-api.us-east-2.amazonaws.com/prod/)
 
-An AI-powered machine learning system for predicting 19F NMR spectra of fluorinated compounds, with a focus on PFAS (Per- and Polyfluoroalkyl Substances). This project combines multiple machine learning approaches including Ridge Regression, Feed-Forward Neural Networks, XGBoost, and HOSE-based nearest neighbors to provide accurate NMR predictions.
-
-## 🌐 Live Web Application
-
-**Try the live application:** [19F NMR Spectrum Predictor](https://wqdx9jslij.execute-api.us-east-2.amazonaws.com/prod/)
-
-The web application allows you to:
-- Enter SMILES notation for fluorinated compounds
-- Get AI-powered 19F NMR spectrum predictions
-- View confidence levels and analysis results
-- Process compounds in 50ms to 1 second
+An AI-powered machine learning system for predicting 19F NMR spectra of fluorinated compounds, with a focus on PFAS (Per- and Polyfluoroalkyl Substances). This project tested multiple machine learning approaches including Ridge Regression, Feed-Forward Neural Networks, XGBoost, and HOSE-based nearest neighbors to provide accurate NMR predictions.
 
 ### 🔗 Related Applications
+**FFNN Web Application**: According to our study, Feed-Forward Neural Networks performed best for this task. For the dedicated Feed-Forward Neural Network implementation with a modern web interface, see the separate repository: [Application_19F_NMR_Spectra_predictor_FFNN](https://github.com/Dandan-Rao/Application_19F_NMR_Spectra_predictor_FFNN)
 
-**FFNN Web Application**: For a dedicated Feed-Forward Neural Network implementation with a modern web interface, see the separate repository: [Application_19F_NMR_Spectra_predictor_FFNN](https://github.com/Dandan-Rao/Application_19F_NMR_Spectra_predictor_FFNN)
-
-This FFNN application features:
-- Modern Bootstrap 5 UI with real-time validation
-- Molecular structure visualization with fluorine highlighting
-- Confidence level indicators (L1-L6) for each predicted peak
-- Docker deployment support
-- Flask-based web framework
+**Try the live application:** [19F NMR Spectrum Predictor](https://wqdx9jslij.execute-api.us-east-2.amazonaws.com/prod/)
 
 ## 🚀 Features
 
@@ -46,9 +30,7 @@ The system uses an ensemble approach combining:
 
 ### Prerequisites
 
-- **Python 3.6+**
-- **Java** (openjdk version "23.0.2" or compatible)
-- **MATLAB R2021b** (for certain molecular descriptor calculations)
+- **Python 3.12**
 
 ### Quick Start with GitHub Codespaces
 
@@ -113,64 +95,6 @@ pip install -r requirements.txt
 └── web_page.png                # Web application screenshot
 ```
 
-## 🔬 Usage
-
-### Web Application
-
-1. Visit the [live application](https://wqdx9jslij.execute-api.us-east-2.amazonaws.com/prod/)
-2. Enter a SMILES string for your fluorinated compound
-3. Click "Predict 19F NMR Spectrum"
-4. View the predicted spectrum and confidence levels
-
-### Example SMILES
-
-- **PFBA**: `C(=O)(C(C(C(F)(F)F)(F)F)(F)F)O`
-- **PFBS**: `C(C(C(F)(F)S(=O)(=O)O)(F)F)(C(F)(F)F)(F)F`
-
-### Programmatic Usage
-
-```python
-from src.atomic_features_2D import get_2D_descriptors
-from src.atomic_features_3D import get_3D_descriptors
-from src.hose_code import generate_hose_codes
-
-# Example: Get descriptors for a SMILES string
-smiles = "C(=O)(C(C(C(F)(F)F)(F)F)(F)F)O"
-descriptors_2D = get_2D_descriptors(smiles)
-descriptors_3D = get_3D_descriptors(smiles)
-hose_codes = generate_hose_codes(smiles)
-```
-
-## 🧪 Requirements
-
-### SMILES Input Requirements
-
-- Must contain at least one fluorine atom (F)
-- Use valid SMILES syntax
-- Compound should be fluorinated
-- Processing time: 50ms to 1 second depending on complexity
-
-### Java Compilation (if modifying Java code)
-
-```bash
-# Compile Java program
-javac -cp .:cdk-1.4.13.jar:cdk.jar:jmathio.jar:jmathplot.jar GetCDKDescriptors.java
-
-# Run Java program
-java -cp .:cdk-1.4.13.jar:cdk.jar:jmathio.jar:jmathplot.jar GetCDKDescriptors temp
-```
-
-## 📈 Model Development
-
-The project includes comprehensive notebooks for:
-
-1. **Model Training**: Ridge and FFNN models with 2D/3D features
-2. **XGBoost Implementation**: Gradient boosting for enhanced performance
-3. **HOSE Integration**: Chemical similarity-based predictions
-4. **Ensemble Methods**: Combining multiple models for robust predictions
-5. **Application Examples**: Real-world usage scenarios
-6. **Rule Verification**: Validation and new rule discovery
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -185,7 +109,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Dandan Rao** - *Initial work* - [kiluarao@gmail.com](mailto:kiluarao@gmail.com)
+- **Dandan Rao** - *Initial work* - 
 
 ## 🙏 Acknowledgments
 
@@ -197,7 +121,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For questions or support, please contact [kiluarao@gmail.com](mailto:kiluarao@gmail.com) or open an issue on GitHub.
+For questions or support, please open an issue on GitHub.
 
 ---
 
