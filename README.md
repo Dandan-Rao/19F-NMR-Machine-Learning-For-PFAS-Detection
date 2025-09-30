@@ -26,48 +26,6 @@ The system uses an ensemble approach combining:
 - **XGBoost** for gradient boosting
 - **HOSE-based Nearest Neighbors** for chemical similarity
 
-## 🛠️ Installation
-
-### Prerequisites
-
-- **Python 3.12**
-
-### Quick Start with GitHub Codespaces
-
-1. **Fork the repository**
-
-2. **Open GitHub Codespaces**:
-   - Click 'Code' → 'Codespaces' → 'Create Codespace on main'
-
-3. **Set up the environment**:
-   ```bash
-   # Create virtual environment
-   python -m venv .venv
-   source .venv/bin/activate
-   
-   # Install dependencies
-   make install
-   ```
-
-4. **Run Jupyter notebooks**:
-   - Open any notebook (e.g., `1_Ridge_and_FFNN_models_use_2D_and_3D_feature_sets.ipynb`)
-   - Select kernel: `.venv (Python 3.12.1) .venv/bin/python`
-
-### Local Installation
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd 19F_NMR_Spectrum_Predictor
-
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
 ## 📁 Project Structure
 
 ```
@@ -77,8 +35,6 @@ pip install -r requirements.txt
 │   ├── 2_XGBoost_model_2D_and_3D_descriptors.ipynb
 │   ├── 3_HOSE_based_nearest_neighbors_model.ipynb
 │   ├── 4_compare_the_model_performance_and_create_an_ensembled_model.ipynb
-│   ├── 5_application.ipynb
-│   └── 6_rule_verification_and_new_rules.ipynb
 ├── src/                         # Source code
 │   ├── atomic_features_2D.py    # 2D molecular descriptors
 │   ├── atomic_features_3D.py    # 3D structural features
